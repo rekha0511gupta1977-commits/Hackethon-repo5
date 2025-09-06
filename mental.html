@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mental Wellness | WellnessCare</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background: #f5f9fc;
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      background: #2a8a5c;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+    .container {
+      padding: 40px 20px;
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+    }
+    .card {
+      background: white;
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: transform 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card h2 {
+      color: #2a8a5c;
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+    }
+    .card p {
+      margin-bottom: 15px;
+      color: #555;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 18px;
+      background: #2a8a5c;
+      color: white;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+    .btn:hover {
+      background: #256f4b;
+    }
+
+    /* Journaling Feature */
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+      resize: none;
+    }
+    .journal-btn {
+      background: #ff7043;
+    }
+    .journal-btn:hover {
+      background: #e65c2f;
+    }
+
+    footer {
+      text-align: center;
+      background: #2a8a5c;
+      color: white;
+      padding: 15px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <header>Mental Wellness Hub</header>
+
+  <div class="container">
+
+    <!-- Guided Meditation -->
+    <div class="card">
+      <h2>🧘 Guided Meditation</h2>
+      <p>Practice mindfulness with calming meditation and breathing exercises.</p>
+      <a href="#" class="btn">Start Session</a>
+    </div>
+
+    <!-- Stress Relief Games -->
+    <div class="card">
+      <h2>🎮 Stress Relief Games</h2>
+      <p>Play memory match, calming visuals, and interactive games for relaxation.</p>
+      <a href="#" class="btn">Play Now</a>
+    </div>
+
+    <!-- Journaling -->
+    <div class="card">
+      <h2>📖 Journaling</h2>
+      <p>Write your daily thoughts privately. Your notes stay safe on your device.</p>
+      <textarea id="journal" rows="5" placeholder="Write your thoughts here..."></textarea>
+      <button class="btn journal-btn" onclick="saveJournal()">Save Journal</button>
+      <p id="saveMessage" style="color:green; font-size:0.9rem; margin-top:5px;"></p>
+    </div>
+
+    <!-- Crisis Support -->
+    <div class="card">
+      <h2>🚨 Crisis Support</h2>
+      <p>If you are feeling overwhelmed, you are not alone. Reach out immediately:</p>
+      <ul>
+        <li><b>India:</b> 9152987821 (Vandrevala Foundation)</li>
+        <li><b>USA:</b> 988 (Suicide & Crisis Lifeline)</li>
+        <li><b>UK:</b> 116 123 (Samaritans)</li>
+      </ul>
+      <a href="tel:9152987821" class="btn">Call for Help</a>
+    </div>
+
+  </div>
+
+  <footer>
+    &copy; 2025 WellnessCare | Mental Wellness Support
+  </footer>
+
+  <script>
+    function saveJournal() {
+      const text = document.getElementById("journal").value;
+      if (text.trim() === "") {
+        document.getElementById("saveMessage").innerText = "Please write something before saving.";
+        return;
+      }
+      localStorage.setItem("myJournal", text);
+      document.getElementById("saveMessage").innerText = "Journal saved successfully ✅";
+    }
+
+    window.onload = function() {
+      const saved = localStorage.getItem("myJournal");
+      if (saved) {
+        document.getElementById("journal").value = saved;
+      }
+    }
+  </script>
+</body>
+</html>

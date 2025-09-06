@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Healthcare & Mental Wellness</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background: #f5f9fc;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: #2a8a5c;
+      overflow-x: hidden;
+      transition: 0.4s;
+      padding-top: 60px;
+      z-index: 1000;
+    }
+    .sidebar a {
+      padding: 12px 24px;
+      text-decoration: none;
+      font-size: 18px;
+      color: white;
+      display: block;
+      transition: 0.3s;
+    }
+    .sidebar a:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    .sidebar .closebtn {
+      position: absolute;
+      top: 15px;
+      right: 25px;
+      font-size: 30px;
+      cursor: pointer;
+      color: white;
+    }
+
+    /* Main content */
+    .main {
+      transition: margin-left 0.4s;
+      padding: 0;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 50px;
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    header h1 {
+      color: #2a8a5c;
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+
+    .header-search {
+      display: flex;
+      gap: 10px;
+    }
+    .header-search input {
+      padding: 8px 15px;
+      border-radius: 30px;
+      border: 1px solid #ccc;
+      outline: none;
+      width: 250px;
+      transition: border-color 0.3s;
+    }
+    .header-search input:focus {
+      border-color: #2a8a5c;
+    }
+    .header-search button {
+      padding: 8px 20px;
+      border-radius: 30px;
+      border: none;
+      background: #2a8a5c;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .header-search button:hover {
+      background: #256f4b;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 80px 20px 40px;
+      background: linear-gradient(to right, #e8f7f2, #f5fcfa);
+    }
+    .hero h2 {
+      font-size: 2.5rem;
+      color: #2a8a5c;
+      margin-bottom: 20px;
+    }
+    .hero p {
+      max-width: 600px;
+      margin: 0 auto 30px;
+      color: #555;
+    }
+    .buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 60px;
+    }
+    .btn {
+      padding: 12px 25px;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    .btn-primary {
+      background: #2a8a5c;
+      color: white;
+    }
+    .btn-primary:hover {
+      background: #256f4b;
+    }
+    .btn-secondary {
+      background: #f0f0f0;
+      color: #333;
+    }
+    .btn-secondary:hover {
+      background: #ddd;
+    }
+
+    /* Appointment Section with Image */
+    .appointment-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      padding: 40px 20px;
+    }
+    .appointment-section img {
+      max-width: 450px;
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    }
+    .appointment-box {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+      max-width: 450px;
+      width: 100%;
+      text-align: left;
+    }
+    .appointment-box h3 {
+      margin-bottom: 20px;
+      color: #2a8a5c;
+      text-align: center;
+    }
+    .appointment-box .input-group {
+      margin-bottom: 15px;
+    }
+    .appointment-box label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+    .appointment-box input,
+    .appointment-box select,
+    .appointment-box textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      outline: none;
+    }
+    .appointment-box input:focus,
+    .appointment-box select:focus,
+    .appointment-box textarea:focus {
+      border-color: #2a8a5c;
+    }
+    .appointment-box button {
+      width: 100%;
+      margin-top: 15px;
+    }
+
+    /* Services Section */
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      padding: 60px 50px;
+    }
+    .service-card {
+      background: white;
+      border-radius: 15px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: transform 0.3s;
+    }
+    .service-card:hover {
+      transform: translateY(-5px);
+    }
+    .service-card h3 {
+      margin-bottom: 10px;
+      color: #2a8a5c;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #2a8a5c;
+      color: white;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <div id="mySidebar" class="sidebar">
+    <span class="closebtn" onclick="closeSidebar()">×</span>
+    <a href="#">Home</a>
+    <a href="#">Dashboard</a>
+    <a href="#">Mental Wellness</a> <!-- ✅ Added here -->
+    <a href="#">Services</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </div>
+
+  <div class="main">
+    <header>
+      <h1 onclick="openSidebar()">WellnessCare</h1>
+      <div class="header-search">
+        <input type="text" placeholder="Search services, doctors, or articles...">
+        <button>Search</button>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <h2>Your Health, Your Happiness</h2>
+      <p>Empowering you with tools for mental wellness, fitness, and healthcare support—all in one place.</p>
+      <div class="buttons">
+        <button class="btn btn-primary">Book Appointment</button>
+        <button class="btn btn-secondary">Talk to a Counselor</button>
+        <button class="btn btn-primary">Check Symptoms</button>
+      </div>
+    </section>
+
+    <!-- Appointment Section with Image -->
+    <section class="appointment-section">
+      <img src="https://img.freepik.com/free-photo/doctor-patient-meeting_23-2148827733.jpg" alt="Doctor Appointment">
+      <div class="appointment-box">
+        <h3>Request an Appointment</h3>
+        <form>
+          <div class="input-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" placeholder="Enter your name">
+          </div>
+          <div class="input-group">
+            <label for="email">Email / Phone</label>
+            <input type="text" id="email" placeholder="Enter your email or phone">
+          </div>
+          <div class="input-group">
+            <label for="service">Service</label>
+            <select id="service">
+              <option value="">Select a Service</option>
+              <option>Doctor Consultation</option>
+              <option>Mental Health Counseling</option>
+              <option>Fitness Program</option>
+              <option>Meditation Guide</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label for="message">Additional Notes</label>
+            <textarea id="message" rows="3" placeholder="Your message (optional)"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit Request</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+      <div class="service-card">
+        <h3>Mental Health Support</h3>
+        <p>Access therapy sessions, counseling, and stress management resources.</p>
+      </div>
+      <div class="service-card">
+        <h3>Fitness Programs</h3>
+        <p>Personalized workout and diet plans to keep your body and mind strong.</p>
+      </div>
+      <div class="service-card">
+        <h3>Telemedicine</h3>
+        <p>Book online consultations with trusted doctors from anywhere.</p>
+      </div>
+      <div class="service-card">
+        <h3>Meditation Guides</h3>
+        <p>Practice mindfulness with guided meditation and breathing exercises.</p>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 WellnessCare | All Rights Reserved</p>
+    </footer>
+  </div>
+
+  <script>
+    function openSidebar() {
+      document.getElementById("mySidebar").style.width = "250px";
+      document.querySelector(".main").style.marginLeft = "250px";
+    }
+    function closeSidebar() {
+      document.getElementById("mySidebar").style.width = "0";
+      document.querySelector(".main").style.marginLeft = "0";
+    }
+  </script>
+</body>
+</html>

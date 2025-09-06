@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact & Help | WellnessCare</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background: #f7fafc;
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      background: #2a8a5c;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 30px 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+    }
+    .card {
+      background: white;
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: transform 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card h2 {
+      color: #2a8a5c;
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+    }
+    .card p {
+      margin-bottom: 12px;
+      color: #555;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 18px;
+      background: #2a8a5c;
+      color: white;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+    .btn:hover {
+      background: #256f4b;
+    }
+
+    /* Form */
+    form input, form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 12px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      outline: none;
+    }
+    form input:focus, form textarea:focus {
+      border-color: #2a8a5c;
+    }
+
+    /* Chatbot */
+    .chat-box {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 15px;
+      max-height: 300px;
+      overflow-y: auto;
+      background: #fafafa;
+      margin-bottom: 10px;
+    }
+    .chat-message {
+      margin-bottom: 10px;
+      padding: 8px 12px;
+      border-radius: 12px;
+      max-width: 80%;
+    }
+    .bot {
+      background: #e0f2ef;
+      align-self: flex-start;
+    }
+    .user {
+      background: #2a8a5c;
+      color: white;
+      align-self: flex-end;
+      margin-left: auto;
+    }
+
+    footer {
+      text-align: center;
+      background: #2a8a5c;
+      color: white;
+      padding: 15px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <header>Contact & Help</header>
+
+  <div class="container">
+
+    <!-- Contact Form -->
+    <div class="card">
+      <h2>📩 Quick Contact Form</h2>
+      <form>
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea rows="4" placeholder="Your Message" required></textarea>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+    </div>
+
+    <!-- Helpline Numbers -->
+    <div class="card">
+      <h2>📞 Helpline Numbers</h2>
+      <p><b>India Suicide Prevention Helpline:</b> 022-27546669</p>
+      <p><b>AASRA (Mental Health):</b> +91-9820466726</p>
+      <p><b>Vandrevala Foundation:</b> 1860-2662-345</p>
+      <p><b>Emergency:</b> Dial 112</p>
+      <p style="color:#c0392b; font-weight:600;">If you are in crisis, please reach out immediately!</p>
+    </div>
+
+    <!-- Chatbot -->
+    <div class="card">
+      <h2>🤖 Instant Support Chatbot</h2>
+      <div class="chat-box" id="chatBox">
+        <div class="chat-message bot">Hello! How can I help you today?</div>
+      </div>
+      <input type="text" id="userInput" placeholder="Type your message...">
+      <button class="btn" onclick="sendMessage()">Send</button>
+    </div>
+
+  </div>
+
+  <footer>
+    &copy; 2025 WellnessCare | Contact & Help
+  </footer>
+
+  <script>
+    function sendMessage() {
+      const input = document.getElementById("userInput");
+      const chatBox = document.getElementById("chatBox");
+
+      if (input.value.trim() === "") return;
+
+      // User message
+      const userMsg = document.createElement("div");
+      userMsg.className = "chat-message user";
+      userMsg.innerText = input.value;
+      chatBox.appendChild(userMsg);
+
+      // Bot reply (basic rules)
+      const botMsg = document.createElement("div");
+      botMsg.className = "chat-message bot";
+      const text = input.value.toLowerCase();
+
+      if (text.includes("hello") || text.includes("hi")) {
+        botMsg.innerText = "Hi there! I'm here to help. 😊";
+      } else if (text.includes("help") || text.includes("emergency")) {
+        botMsg.innerText = "If you are in crisis, please call 022-27546669 immediately.";
+      } else if (text.includes("stress") || text.includes("depressed")) {
+        botMsg.innerText = "I'm sorry to hear that. Try deep breathing exercises. If it continues, please consult a professional.";
+      } else {
+        botMsg.innerText = "Thank you for reaching out. Our team will get back to you soon!";
+      }
+
+      chatBox.appendChild(botMsg);
+      chatBox.scrollTop = chatBox.scrollHeight;
+      input.value = "";
+    }
+  </script>
+</body>
+</html>

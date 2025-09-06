@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Healthcare Services | WellnessCare</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background: #f5f9fc;
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      background: #2a8a5c;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+    .container {
+      padding: 40px 20px;
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+    }
+    .card {
+      background: white;
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: transform 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card h2 {
+      color: #2a8a5c;
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+    }
+    .card p {
+      margin-bottom: 15px;
+      color: #555;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 18px;
+      background: #2a8a5c;
+      color: white;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+    .btn:hover {
+      background: #256f4b;
+    }
+
+    /* Form Styling */
+    form {
+      margin-top: 10px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      margin-bottom: 12px;
+      outline: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: #2a8a5c;
+    }
+
+    /* Symptom Checker Chatbot */
+    .chat-box {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 15px;
+      max-height: 300px;
+      overflow-y: auto;
+      margin-bottom: 10px;
+      background: #fafafa;
+    }
+    .chat-message {
+      margin-bottom: 10px;
+      padding: 8px 12px;
+      border-radius: 12px;
+      max-width: 80%;
+    }
+    .bot {
+      background: #e0f2ef;
+      align-self: flex-start;
+    }
+    .user {
+      background: #2a8a5c;
+      color: white;
+      align-self: flex-end;
+      margin-left: auto;
+    }
+
+    footer {
+      text-align: center;
+      background: #2a8a5c;
+      color: white;
+      padding: 15px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <header>Healthcare Services</header>
+
+  <div class="container">
+
+    <!-- Book Doctor Appointment -->
+    <div class="card">
+      <h2>👨‍⚕️ Book Doctor Appointment</h2>
+      <p>Consult with doctors online via teleconsultation.</p>
+      <form>
+        <input type="text" placeholder="Full Name">
+        <input type="text" placeholder="Email / Phone">
+        <select>
+          <option>Select Specialty</option>
+          <option>General Physician</option>
+          <option>Psychologist</option>
+          <option>Cardiologist</option>
+          <option>Dermatologist</option>
+        </select>
+        <input type="date">
+        <button type="submit" class="btn">Book Now</button>
+      </form>
+    </div>
+
+    <!-- Lab Test Booking -->
+    <div class="card">
+      <h2>🧪 Lab Test Booking</h2>
+      <p>Book diagnostic tests and home sample collection.</p>
+      <form>
+        <input type="text" placeholder="Full Name">
+        <input type="text" placeholder="Address">
+        <select>
+          <option>Select Test</option>
+          <option>Blood Test</option>
+          <option>Thyroid Test</option>
+          <option>Diabetes Test</option>
+          <option>Full Body Checkup</option>
+        </select>
+        <button type="submit" class="btn">Book Test</button>
+      </form>
+    </div>
+
+    <!-- Medicine Ordering -->
+    <div class="card">
+      <h2>💊 Medicine Ordering</h2>
+      <p>Order prescribed medicines online and get delivery at home.</p>
+      <form>
+        <input type="text" placeholder="Full Name">
+        <input type="text" placeholder="Delivery Address">
+        <textarea rows="3" placeholder="Enter medicine names or upload prescription"></textarea>
+        <button type="submit" class="btn">Order Medicines</button>
+      </form>
+    </div>
+
+    <!-- Symptom Checker -->
+    <div class="card">
+      <h2>🤖 Symptom Checker</h2>
+      <p>Describe your symptoms and get possible conditions.</p>
+      <div class="chat-box" id="chatBox">
+        <div class="chat-message bot">Hello! Please describe your symptoms.</div>
+      </div>
+      <input type="text" id="userInput" placeholder="Type your symptom...">
+      <button class="btn" onclick="sendMessage()">Send</button>
+    </div>
+
+  </div>
+
+  <footer>
+    &copy; 2025 WellnessCare | Healthcare Services
+  </footer>
+
+  <script>
+    function sendMessage() {
+      const input = document.getElementById("userInput");
+      const chatBox = document.getElementById("chatBox");
+
+      if (input.value.trim() === "") return;
+
+      // User message
+      const userMsg = document.createElement("div");
+      userMsg.className = "chat-message user";
+      userMsg.innerText = input.value;
+      chatBox.appendChild(userMsg);
+
+      // Bot response (simple rule-based)
+      const botMsg = document.createElement("div");
+      botMsg.className = "chat-message bot";
+      if (input.value.toLowerCase().includes("fever")) {
+        botMsg.innerText = "You might have a viral infection or flu. Stay hydrated and consult a doctor if it persists.";
+      } else if (input.value.toLowerCase().includes("headache")) {
+        botMsg.innerText = "Possible causes: stress, dehydration, or migraine. Try rest, and consult if severe.";
+      } else if (input.value.toLowerCase().includes("cough")) {
+        botMsg.innerText = "Cough may be due to cold, flu, or allergies. Monitor symptoms and see a doctor if needed.";
+      } else {
+        botMsg.innerText = "Thank you. Please consult a doctor for an accurate diagnosis.";
+      }
+      chatBox.appendChild(botMsg);
+
+      // Scroll to bottom
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+      input.value = "";
+    }
+  </script>
+</body>
+</html>
